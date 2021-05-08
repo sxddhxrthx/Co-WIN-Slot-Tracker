@@ -13,6 +13,6 @@ Download the file app.py and run it with python app.py in cmd
 Add sender email address and app password at this section of the code
 
 ```
-user = 'sidc.11726@gmail.com'
+user = 'sender@gmail.com'
 app_password = 'jcxajkygiqnukudg' # a token for gmail
 ```
