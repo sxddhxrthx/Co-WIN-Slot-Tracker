@@ -17,7 +17,11 @@ date = '09-05-2021' # date for which appointment is required
 user = 'sender@gmail.com'
 app_password = 'jcxajkygiqnukudg' # a token for gmail
 ```
-4. Run it with python app.py in cmd
+4. Run it with python app.py in cmd as
+
+```
+python app.py '<planned_date>' '<min_age_limit>'
+```
 
 > In order to get emails, you need to make configuration changes in your gmail account.
 > Follow the instructions at https://towardsdatascience.com/automate-sending-emails-with-gmail-in-python-449cc0c3c317 to make those configurations.
