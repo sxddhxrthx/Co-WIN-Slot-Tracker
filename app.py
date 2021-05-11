@@ -4,7 +4,6 @@ import time
 import yagmail
 import sys
 from datetime import datetime
-from win10toast import ToastNotifier
 
 date = sys.argv[1]
 age_agroup = sys.argv[2]
@@ -12,9 +11,9 @@ age_agroup = sys.argv[2]
 def get_recipients():
 
     recipients = {
-        "123456": ["recipient1@email.com", "recipient2@email.com"],
-        "100100": ["recipient3@email.com"],
-        "101010": ["recipient4@email.com", "recipient5@email.com",  "recipient6@email.com"]
+        "123456": ["recipient1@email.com"],
+        "100100": ["recipient2@email.com"],
+        "101010": ["recipient3@email.com"],
     }
 
     return recipients
@@ -38,21 +37,20 @@ def get_session_data(pincode, date):
         sessions = schedule_data['sessions']
         return sessions
     except Exception as e:
-        print(f"{current_time} - {pincode} - No Response from API - Error: {e}")
-        return []
-    
+        print(f"{current_time} - {pincode} - Cannot Fetch Data - Error: {e}")
+
 
 def check_vaccine_availability(sessions, pincode):
 
     current_time = datetime.now()
     if sessions:
         for session in sessions:
-            print(f"{current_time} - {session['pincode']} - ({session['min_age_limit']}+) {session['address']}: {session['available_capacity']}")
             if int(session['min_age_limit']) == age_agroup:
+                print(f"{current_time} - {session['pincode']} - ({session['min_age_limit']}+) {session['address']}: {session['available_capacity']}")
                 return True
-    else:
-        print(f"{current_time} - {pincode} - Session Not Available")
-        return False
+            else:
+                print(f"{current_time} - {pincode} - No Session Available")
+                return False
 
 
 def compose_mail(pincode, center_details):
@@ -81,8 +79,8 @@ def compose_mail(pincode, center_details):
 
 def send_mail(recipient, subject, content):
 
-    user = '<sender_email_id>'
-    app_password = '<sender_app_password>'
+    user = 'senders_gmail_username@gmail.com'
+    app_password = 'gmail_app_password'
 
     to = recipient
 
