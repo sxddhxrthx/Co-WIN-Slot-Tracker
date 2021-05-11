@@ -11,6 +11,7 @@ age_agroup = sys.argv[2]
 def get_recipients():
 
     recipients = {
+        # "pincode": ["receipent_mail_address"]
         "123456": ["recipient1@email.com"],
         "100100": ["recipient2@email.com"],
         "101010": ["recipient3@email.com"],
